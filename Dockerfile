@@ -17,13 +17,14 @@ FROM base as dev
 EXPOSE 3000
 CMD ["yarn", "run", "start"]
 
-FROM base as int
+# use below for static prod build
+# FROM base as int
 
-RUN yarn build
+# RUN yarn build
 
-FROM nginx:latest as prod
+# FROM nginx:latest as prod
 
-EXPOSE 80
+# EXPOSE 80
 
-COPY packages/frontend/nginx.conf /etc/nginx/nginx.conf
-COPY --from=int /app/packages/frontend/build/ /var/www/
+# COPY packages/frontend/nginx.conf /etc/nginx/nginx.conf
+# COPY --from=int /app/packages/frontend/build/ /var/www/
