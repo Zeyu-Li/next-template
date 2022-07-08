@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import Title from '../components/common/Title'
-import styles from '../styles/pages/user/index.module.scss'
+import Link from "next/link";
+import Title from "../components/common/Title";
+import styles from "../styles/pages/user/index.module.scss";
 
 const Home = () => {
   return (
@@ -11,11 +11,11 @@ const Home = () => {
           <h1>
             Welcome to the
             <br />
-            Next-Django Template
+            Next Template
           </h1>
           <p>The one stop shop for a full stack app</p>
           <Link
-            href="https://github.com/Zeyu-Li/next-django-template"
+            href="https://github.com/Zeyu-Li/next-template"
             target="_blank"
             title="Contribute now"
           >
@@ -32,7 +32,7 @@ const Home = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
