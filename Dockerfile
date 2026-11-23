@@ -1,23 +1,23 @@
-FROM node:14 as base
+FROM node:24-alpine AS base
 WORKDIR /app
 
+# Cypress is only needed for local e2e tests, so skip its binary download
+ENV CYPRESS_INSTALL_BINARY=0
+
 # copy dependencies and install
-COPY package.json .
+COPY package.json yarn.lock ./
 
-COPY yarn.lock .
+RUN yarn install --frozen-lockfile
 
-ADD packages /app/packages/
-
-RUN yarn install
-
-WORKDIR /app/packages/frontend
+COPY . .
 
 
-FROM base as dev
+FROM base AS dev
 EXPOSE 3000
+RUN yarn build
 CMD ["yarn", "run", "start"]
 
-# use below for static prod build
+# use below for static prod build (requires `output: 'export'` in next.config.js)
 # FROM base as int
 
 # RUN yarn build
@@ -26,5 +26,5 @@ CMD ["yarn", "run", "start"]
 
 # EXPOSE 80
 
-# COPY packages/frontend/nginx.conf /etc/nginx/nginx.conf
-# COPY --from=int /app/packages/frontend/build/ /var/www/
+# COPY nginx.conf /etc/nginx/nginx.conf
+# COPY --from=int /app/out/ /var/www/
