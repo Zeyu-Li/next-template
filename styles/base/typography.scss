@@ -1,3 +1,5 @@
+@use '../shared' as *;
+
 .error-text {
   color: $color-text-error;
 }

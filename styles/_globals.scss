@@ -1,7 +1,7 @@
 // Abstracts
-@import 'abstracts/fonts.scss';
+@use 'abstracts/fonts';
 
 // Base
-@import 'base/base.scss';
-@import 'base/reset.scss';
-@import 'base/typography.scss';
+@use 'base/base';
+@use 'base/reset';
+@use 'base/typography';
